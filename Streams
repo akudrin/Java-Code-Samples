@@ -1,0 +1,3 @@
+//Create a stream of random numbers
+DoubleStream s1 = new Random().doubles();
+s1.forEach(System.out::println);
