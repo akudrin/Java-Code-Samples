@@ -1,3 +1,10 @@
 //Create a stream of random numbers
-DoubleStream s1 = new Random().doubles();
-s1.forEach(System.out::println);
+DoubleStream s = new Random().doubles();
+s.forEach(System.out::println);
+
+IntStream s = new Random().ints();
+s.forEach(System.out::println);
+
+IntStream s1 = new Random().ints(5, 1, 10);
+
+That returns an IntStream of five random ints from one (inclusive) to ten (exclusive).
