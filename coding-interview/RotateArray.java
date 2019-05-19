@@ -2,8 +2,10 @@ public class RotateArray {
 
     public static void main(String[] args) {
 
-        int[] arr = new int[] { 1, 2, 3, 4, 5, 6, 7 };
+        int[] arr = new int[] { 1, 2, 3, 4, 5, 6, 7, 8 };
         rotate(arr, 8);
+
+        rotateReverse(arr, 8);
 
     }
 
@@ -27,7 +29,7 @@ public class RotateArray {
 
         String newLine = System.getProperty("line.separator");
         System.out.println(newLine);
-
+        System.out.println("Rotate");
         for (int i = 0; i < nums.length; i++) {
             System.out.print(nums[i]);
         }
@@ -58,6 +60,15 @@ public class RotateArray {
         reverse(arr, 0, a - 1);
         reverse(arr, a, arr.length - 1);
         reverse(arr, 0, arr.length - 1);
+
+        String newLine = System.getProperty("line.separator");
+        System.out.println(newLine);
+        System.out.println("Reverse");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i]);
+        }
+
+
     }
 
     public static void reverse(int[] arr, int left, int right) {
