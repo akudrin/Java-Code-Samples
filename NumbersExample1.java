@@ -46,6 +46,19 @@ System.out.println(Float.compare(float1, float1)); // Result: 0
 System.out.println(Float.compare(float3, float2)); // Result: 1
 
 }
+//Use underscores in place of commas or decimals in larger numbers in order to make them more readable.
+int million = 1_000_000;
+int billion = 1_000_000_000;
+float ten_pct = 1_0f;
+double exp = 1_234_56.78_9e2;
+
+//Make use of binary literals to make your code readable. prefix the number with 0b or 0B.
+int bin1 = 0b1100;
+short bin2 = 0B010101;
+short bin3 = (short) 0b1001100110011001;
+System.out.println(bin1);
+System.out.println(bin2);
+System.out.println(bin3);
 
 }
 
