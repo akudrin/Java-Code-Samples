@@ -1,8 +1,8 @@
-public class Player {
+public abstract class Player {
     
-    private String firstName = null;
-    private String lastName = null;
-    private String position = null;
+    private String firstName;
+    private String lastName;
+    private String position;
     private int status = -1;
     
     public Player(){
@@ -35,42 +35,39 @@ public class Player {
         return getFirstName() + " " + getLastName() + " - " + getPosition();
     }
 
-
     public String getFirstName() {
         return firstName;
     }
 
- 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        if (firstName.length() > 30){
+            this.firstName = firstName.substring(0, 29);
+        } else {
+            this.firstName = firstName;
+        }
     }
-
 
     public String getLastName() {
         return lastName;
     }
 
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
- 
     public String getPosition() {
         return position;
     }
-
 
     public void setPosition(String position) {
         this.position = position;
     }
 
-  
     public int getStatus() {
         return status;
     }
 
-
+    
     public void setStatus(int status) {
         this.status = status;
     }
