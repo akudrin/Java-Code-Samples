@@ -1,3 +1,4 @@
+
 public class Goalie extends Player implements PlayerType {
     
     private int totalSaves;

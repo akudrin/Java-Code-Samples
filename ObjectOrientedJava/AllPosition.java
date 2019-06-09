@@ -35,6 +35,6 @@ public class AllPosition extends Player implements PlayerType {
 
     public void setTotalBlocks(int totalBlocks) {
         this.totalBlocks = totalBlocks;
-    }    
-    
+    }
+     
 }

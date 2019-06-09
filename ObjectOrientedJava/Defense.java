@@ -23,7 +23,6 @@ public class Defense extends Player implements PlayerType {
     public void setShotsOnGoal(int shotsOnGoal) {
         this.shotsOnGoal = shotsOnGoal;
     }
-
     public int getSteals() {
         return steals;
     }
@@ -31,5 +30,6 @@ public class Defense extends Player implements PlayerType {
     public void setSteals(int steals) {
         this.steals = steals;
     }
-        
+    
+    
 }
