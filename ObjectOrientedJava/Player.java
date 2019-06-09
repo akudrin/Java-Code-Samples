@@ -1,3 +1,4 @@
+
 public abstract class Player {
     
     private String firstName;
@@ -35,6 +36,8 @@ public abstract class Player {
         return getFirstName() + " " + getLastName() + " - " + getPosition();
     }
 
+
+    
     public String getFirstName() {
         return firstName;
     }
@@ -67,7 +70,6 @@ public abstract class Player {
         return status;
     }
 
-    
     public void setStatus(int status) {
         this.status = status;
     }
