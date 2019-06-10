@@ -1,50 +1,27 @@
+import java.io.*;
 
-import java.util.List;
+public class Team implements TeamType, Cloneable, Serializable {
 
-public class Team implements TeamType {
-
-    private List<Player> players;
     private String name;
     private String city;
 
-    /**
-     * @return the players
-     */
-    public List<Player> getPlayers() {
-        return players;
-    }
 
-    /**
-     * @param players the players to set
-     */
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
 
-    /**
-     * @return the name
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * @param name the name to set
-     */
+ 
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * @return the city
-     */
+
     public String getCity() {
         return city;
     }
 
-    /**
-     * @param city the city to set
-     */
+  
     public void setCity(String city) {
         this.city = city;
     }
@@ -53,5 +30,52 @@ public class Team implements TeamType {
         return this.name + " - " + this.city;
     }
 
-    
+
+    @Override
+    public Team clone() {
+
+        Team obj = null;
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(this);
+            oos.close();
+
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            obj = (Team) ois.readObject();
+            ois.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException cnfe) {
+            cnfe.printStackTrace();
+        }
+        return obj;
+    }
+
+
+    public Team shallowCopyClone() {
+
+        try {
+            return (Team) super.clone();
+        } catch (CloneNotSupportedException ex) {
+            return null;
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Team) {
+            Team other = (Team) obj;
+            return other.getName().equals(this.getName())
+                    && other.getCity().equals(this.getCity());
+        } else {
+            return false;
+        }
+
+    }
 }
