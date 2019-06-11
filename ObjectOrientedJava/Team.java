@@ -2,10 +2,18 @@ import java.io.*;
 
 public class Team implements TeamType, Cloneable, Serializable {
 
+    private List<Player> players;
     private String name;
     private String city;
+    private volatile int cachedHashCode = 0;
 
+    public List<Player> getPlayers() {
+        return players;
+    }
 
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
 
     public String getName() {
         return name;
@@ -72,10 +80,31 @@ public class Team implements TeamType, Cloneable, Serializable {
         if (obj instanceof Team) {
             Team other = (Team) obj;
             return other.getName().equals(this.getName())
-                    && other.getCity().equals(this.getCity());
+                    && other.getCity().equals(this.getCity())
+                    && other.getPlayers().equals(this.getPlayers());
         } else {
             return false;
         }
 
+    }
+
+    @Override
+    public int hashCode() {
+        int hashCode = cachedHashCode;
+        if (hashCode == 0) {
+            String concatStrings = name + city;
+            if (players.size() > 0) {
+                for (Player player : players) {
+                    concatStrings = concatStrings
+                            + player.getFirstName()
+                            + player.getLastName()
+                            + player.getPosition()
+                            + String.valueOf(player.getStatus());
+
+                }
+            }
+            hashCode = concatStrings.hashCode();
+        }
+        return hashCode;
     }
 }
