@@ -6,6 +6,8 @@ public class Ch_8_6_CopyFileExample {
     public static void main (String[] args) {
         Ch_8_6_CopyFileExample exampleCh86 = new Ch_8_6_CopyFileExample();
         exampleCh86.copyFile();
+
+        String path = System.getProperty("user.dir");
     }
 
     private void copyFile() {
