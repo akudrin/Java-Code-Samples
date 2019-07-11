@@ -1,14 +1,6 @@
-package org.java9recipes.chapter12.recipe12_05;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- *
- * @author John O'Conner (john@joconner.com)
- * Update: Juneau
- * Recipe 12-5:  Searching Unicode with Regular Expressions
- */
 public class Recipe12_5 {
 
     private String jaText = "Fight 文字化け!";
