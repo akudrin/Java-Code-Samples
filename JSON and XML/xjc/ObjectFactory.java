@@ -6,9 +6,7 @@
 //
 
 
-import org.java9recipes.chapter20.recipe20_01.Patient;
 import javax.xml.bind.annotation.XmlRegistry;
-import org.java9recipes.chapter20.Patients;
 
 
 /**
