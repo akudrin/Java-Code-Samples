@@ -1,1 +1,3 @@
-module org.firstModule {}
+module org.firstModule {
+    requires org.secondModule;
+}
