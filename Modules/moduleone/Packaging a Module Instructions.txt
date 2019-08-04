@@ -1,0 +1,9 @@
+To package the
+module that was developed, navigate to the directory which contains the mods and src
+directories. From within that directory, execute the following commands via the command line:
+mkdir lib
+jar --create --file=lib/org.firstModule@1.0.jar --module-version=1.0 --main-class=org.
+firstModule.Main -C mods/org.firstModule .
+This utility will package the module into a JAR file within the lib directory. The JAR file can then be
+executed with the java executable as follows:
+java -p lib -m org.firstModule
