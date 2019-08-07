@@ -1,3 +1,16 @@
+/*
+• Stream.of(T... values) and Stream.of(T t)
+• Arrays.stream(T[] array), with overloads for int[], double[], and long[]
+• Stream.iterate(T seed, UnaryOperator<T> f)
+• Stream.generate(Supplier<T> s)
+• Collection.stream()
+• Using range and rangeClosed:
+—IntStream.range(int startInclusive, int endExclusive)
+—IntStream.rangeClosed(int startInclusive, int endInclusive)
+—LongStream.range(long startInclusive, long endExclusive)
+—LongStream.rangeClosed(long startInclusive, long endInclusive)
+ */
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -48,3 +61,4 @@ public class Streams1 {
         System.out.println(longs);
     }
 }
+
