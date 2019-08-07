@@ -40,7 +40,7 @@ public class DataScience1 {
         return value.trim().isEmpty();
     }
 
-    private boolean checkNull(String value) {
+    private static boolean checkNull(String value) {
         return value == null || "null".equalsIgnoreCase(value);
     }
 
