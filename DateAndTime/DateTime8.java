@@ -1,10 +1,5 @@
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalAdjuster;
-import java.time.temporal.TemporalAdjusters;
+import java.time.*;
+import java.time.temporal.*;
 import java.util.stream.IntStream;
 
 public class DateTime8 {
@@ -29,16 +24,44 @@ public class DateTime8 {
         IntStream.rangeClosed(1, 14)
                 .mapToObj(day -> LocalDate.of(2017, Month.JULY, day))
                 .forEach(date ->
-                                date.with(Adjusters::adjustInto).getDayOfMonth());
+                        date.with(Adjusters::adjustInto).getDayOfMonth());
 
         IntStream.rangeClosed(15, 31)
                 .mapToObj(day -> LocalDate.of(2017, Month.JULY, day))
                 .forEach(date ->
-                                date.with(Adjusters::adjustInto).getDayOfMonth());
+                        date.with(Adjusters::adjustInto).getDayOfMonth());
 
+        System.out.println(LocalDate.now().query(TemporalQueries.precision()));
+        System.out.println(LocalTime.now().query(TemporalQueries.precision()));
+        System.out.println(ZonedDateTime.now().query(TemporalQueries.zone()));
+        System.out.println(ZonedDateTime.now().query(TemporalQueries.zoneId()));
+
+        IntStream.range(10, 19)
+                .mapToObj(n -> LocalDate.of(2017, Month.SEPTEMBER, n))
+                .forEach(date ->
+                        System.out.println(date.query(new DateTime8()::daysUntilPirateDay)) );
+        IntStream.rangeClosed(20, 30)
+                .mapToObj(n -> LocalDate.of(2017, Month.SEPTEMBER, n))
+                .forEach(date -> {
+                    Long days = date.query(new DateTime8()::daysUntilPirateDay);
+                    System.out.println(days);
+                });
 
     }
+
+    private long daysUntilPirateDay(TemporalAccessor temporal) {
+        int day = temporal.get(ChronoField.DAY_OF_MONTH);
+        int month = temporal.get(ChronoField.MONTH_OF_YEAR);
+        int year = temporal.get(ChronoField.YEAR);
+        LocalDate date = LocalDate.of(year, month, day);
+        LocalDate tlapd = LocalDate.of(year, Month.SEPTEMBER, 19);
+        if (date.isAfter(tlapd)) {
+            tlapd = tlapd.plusYears(1);
+        }
+        return ChronoUnit.DAYS.between(date, tlapd);
+    }
 }
+
 
 class PaydayAdjuster implements TemporalAdjuster {
     public Temporal adjustInto(Temporal input) {
