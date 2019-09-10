@@ -25,6 +25,8 @@ public class ParallelismConcurrency5 {
         while (!futureB.isDone()) {
             System.out.println("Waiting...");
         }
+        futureB.cancel(true);
+        System.out.println("Even more processing...");
         getIfNotCancelled(futureB);
 
 
