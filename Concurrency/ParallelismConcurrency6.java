@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
 
 public class ParallelismConcurrency6 {
@@ -45,9 +46,38 @@ public class ParallelismConcurrency6 {
         }
     }
 
+    //Using supplyAsync to retrieve a product
+    public CompletableFuture<Product> getProductAsync(int id) {
+        try {
+            Product product = getLocal(id);
+            if (product != null) {
+                logger.info("getLocal with id=" + id);
+                return CompletableFuture.completedFuture(product);
+            } else {
+                logger.info("getRemote with id=" + id);
+                return CompletableFuture.supplyAsync(() -> {
+                    Product p = getRemote(id);
+                    cache.put(id, p);
+                    return p;
+                });
+            }
+        } catch (Exception e) {
+            logger.info("exception thrown");
+            CompletableFuture<Product> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
+    }
+
 
     public static void main(String[] args) {
-
+        try {
+            new ParallelismConcurrency6().getProduct(666).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 }
 
