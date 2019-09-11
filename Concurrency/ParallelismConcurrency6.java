@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
 
 public class ParallelismConcurrency6 {
@@ -22,6 +23,26 @@ public class ParallelismConcurrency6 {
         } catch (InterruptedException ignored) {
         }
         return new Product(id, "name");
+    }
+
+    //Completing a CompletableFuture
+    public CompletableFuture<Product> getProduct(int id) {
+        try {
+            Product product = getLocal(id);
+            if (product != null) {
+                return CompletableFuture.completedFuture(product);
+            } else {
+                CompletableFuture<Product> future = new CompletableFuture<>();
+                Product p = getRemote(id);
+                cache.put(id, p);
+                future.complete(p);
+                return future;
+            }
+        } catch (Exception e) {
+            CompletableFuture<Product> future = new CompletableFuture<>();
+            future.completeExceptionally(e);
+            return future;
+        }
     }
 
 
