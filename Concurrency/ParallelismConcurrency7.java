@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 public class ParallelismConcurrency7 {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
 
         //Coordinating tasks using a CompletableFuture
@@ -38,6 +38,9 @@ public class ParallelismConcurrency7 {
                         .thenCombine(CompletableFuture.supplyAsync(() -> y),
                                 (n1, n2) -> n1 + n2);
 
+        //Using the handle method
+        new ParallelismConcurrency7().handleWithException();
+        new ParallelismConcurrency7().handleWithoutException();
     }
 
     private String sleepThenReturnString() {
@@ -46,6 +49,23 @@ public class ParallelismConcurrency7 {
         } catch (InterruptedException ignored) {
         }
         return "42";
+    }
+
+    private CompletableFuture<Integer> getIntegerCompletableFuture(String num) {
+        return CompletableFuture.supplyAsync(() -> Integer.parseInt(num))
+                .handle((val, exc) -> val != null ? val : 0);
+    }
+
+    public void handleWithException() throws Exception {
+        String num = "abc";
+        CompletableFuture<Integer> value = getIntegerCompletableFuture(num);
+        System.out.println(value.get() == 0);
+    }
+
+    public void handleWithoutException() throws Exception {
+        String num = "42";
+        CompletableFuture<Integer> value = getIntegerCompletableFuture(num);
+        System.out.println(value.get() == 42);
     }
 
 
