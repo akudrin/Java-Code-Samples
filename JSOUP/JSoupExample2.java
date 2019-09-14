@@ -49,6 +49,19 @@ public class JSoupExample2 {
         Element pag = doc.getElementById("pagination_control");
         Elements desktopOnly = doc.getElementsByClass("desktopOnly");
 
+        //Filtering - Traversing
+        Element firstSection = sections.first();
+        Element lastSection = sections.last();
+        Element secondSection = sections.get(2);
+        Elements allParents = firstSection.parents();
+        Element parent = firstSection.parent();
+        Elements children = firstSection.children();
+        Elements siblings = firstSection.siblingElements();
+
+        sections.forEach(el -> System.out.println("section: " + el));
+        Elements sectionParagraphs = firstSection.select(".paragraph");
+
+
 
 
     }
