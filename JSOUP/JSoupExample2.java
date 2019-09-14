@@ -38,7 +38,17 @@ public class JSoupExample2 {
                 .header("headersecurity", "xyz123")
                 .get();
 
-        
+        //Filtering - Selecting
+        Elements links = doc.select("a");
+        Elements sections = doc.select("section");
+        Elements logo = doc.select(".spring-logo--container");
+        Elements pagination = doc.select("#pagination_control");
+        Elements divsDescendant = doc.select("header div");
+        Elements divsDirect = doc.select("header > div");
+
+        Element pag = doc.getElementById("pagination_control");
+        Elements desktopOnly = doc.getElementsByClass("desktopOnly");
+
 
 
     }
