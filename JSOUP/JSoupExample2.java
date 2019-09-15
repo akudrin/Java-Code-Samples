@@ -3,6 +3,7 @@ import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.parser.Tag;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -69,6 +70,13 @@ public class JSoupExample2 {
         String sectionDivText = sectionDiv.text();
         String articleHtml = firstArticle.html();
         String outerHtml = firstArticle.outerHtml();
+
+        //Setting Attributes and Inner Text/HTML
+        timeElement.attr("datetime", "2016-12-16 15:19:54.3");
+        sectionDiv.text("foo bar");
+        firstArticle.select("h2").html("<div><span></span></div>");
+
+
 
 
     }
