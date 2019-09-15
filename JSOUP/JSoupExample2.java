@@ -76,7 +76,19 @@ public class JSoupExample2 {
         sectionDiv.text("foo bar");
         firstArticle.select("h2").html("<div><span></span></div>");
 
+        //Creating and Appending Elements
+        Element link = new Element(Tag.valueOf("a"), "")
+                .text("Checkout this amazing website!")
+                .attr("href", "http://baeldung.com")
+                .attr("target", "_blank");
+        firstArticle.appendChild(link);
 
+        //Removing Elements
+        doc.select("li.navbar-link").remove();
+        firstArticle.select("img").remove();
+
+        //Converting the Modified Document to HTML
+        String docHtml = doc.html();
 
 
     }
