@@ -61,7 +61,14 @@ public class JSoupExample2 {
         sections.forEach(el -> System.out.println("section: " + el));
         Elements sectionParagraphs = firstSection.select(".paragraph");
 
-
+        //Extracting
+        Element firstArticle = doc.select("article").first();
+        Element timeElement = firstArticle.select("time").first();
+        String dateTimeOfFirstArticle = timeElement.attr("datetime");
+        Element sectionDiv = firstArticle.select("section div").first();
+        String sectionDivText = sectionDiv.text();
+        String articleHtml = firstArticle.html();
+        String outerHtml = firstArticle.outerHtml();
 
 
     }
