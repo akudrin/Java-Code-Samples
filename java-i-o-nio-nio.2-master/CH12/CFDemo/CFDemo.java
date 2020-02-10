@@ -13,5 +13,13 @@ public class CFDemo
          return;
       }
       Files.createFile(Paths.get(args[0]));
+      /*
+      //POSIX file system, set regular file permissions
+      Set<PosixFilePermission> perms =
+      PosixFilePermissions.fromString("rw-------");
+      FileAttribute<Set<PosixFilePermission>> fa =
+      PosixFilePermissions.asFileAttribute(perms);
+      Files.createFile(Paths.get("report"), fa);
+      */
    }
 }
