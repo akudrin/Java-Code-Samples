@@ -1,3 +1,7 @@
+import java.io.RandomAccessFile;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
+
 public class FileLockingExample1 {
 
     public static void main(String[] args) {
